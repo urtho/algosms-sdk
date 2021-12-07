@@ -1,6 +1,6 @@
 import algosdk from "algosdk";
 import {TextEncoder} from "util";
-import {pad, encryptFor} from "./crypto";
+import {pad, encryptFor, encryptForBin} from "./crypto";
 import {client, accRcpt, accSender, ALGOSMS_V0_PREFIX, ALGOSMSV0} from "./common";
 
 
@@ -20,18 +20,18 @@ const makeSMSTxn = async (rcpt: string, sender: string, amount: number, sms: ALG
     amount = suggestedParams.fee * 10;
   }
 
-  const b64ej = encryptFor(clearText, rcpt, sender);
+  const b64ej = encryptForBin(clearText, rcpt, sender);
 
   // const clearText2 = decryptFrom(b64ej, sender.addr, accRcpt);
   // console.log(clearText == clearText2);
 
-  const note = ALGOSMS_V0_PREFIX + b64ej;
+  const note = new Uint8Array([...Buffer.from(ALGOSMS_V0_PREFIX), ...b64ej]);
   const enc = new TextEncoder();
   const txn = algosdk.makePaymentTxnWithSuggestedParamsFromObject({
     from: sender,
     to: rcpt,    
     amount,
-    note: enc.encode(note),
+    note,
     suggestedParams: {...suggestedParams}
   });
 

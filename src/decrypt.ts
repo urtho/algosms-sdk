@@ -1,17 +1,23 @@
-import {decryptFrom} from "./crypto";
+import {decryptFromBin} from "./crypto";
 import {indexerClient, accRcpt, ALGOSMS_V0_PREFIX} from "./common";
 
-const testTxn = 'OU5H5NABFICMKFKSF7HX2GC7OMMKQALWTTSJBZBPUPRFHLWMF5KA';
+// Example TXN with Base64 encoded payload
+// const testTxn = 'OU5H5NABFICMKFKSF7HX2GC7OMMKQALWTTSJBZBPUPRFHLWMF5KA';
+
+// Example TXN with binary payload
+const testTxn = 'ZIWDULW25VYT64RWGY273QWULJ27F42LPQ6O44PKXR5EXSM2YQIQ';
 
 (async () => {
   
   const txn = await indexerClient.lookupTransactionByID(testTxn).do();
-  const note = Buffer.from(txn.transaction.note,'base64').toString();
-  
-  if (note.startsWith(ALGOSMS_V0_PREFIX)) {    
-    const payload = note.substr(ALGOSMS_V0_PREFIX.length);
-    //no error checking :)
-    const msg = decryptFrom(
+  const note = Buffer.from(txn.transaction.note,'base64');
+    
+  const prefix = Buffer.from(note.slice(0, ALGOSMS_V0_PREFIX.length));
+
+  if (prefix.equals(Buffer.from(ALGOSMS_V0_PREFIX))) {    
+    const payload = note.slice(ALGOSMS_V0_PREFIX.length);
+    //no error checking :(
+    const msg = decryptFromBin(
         payload,
         txn.transaction.sender,
         accRcpt

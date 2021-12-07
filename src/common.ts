@@ -16,7 +16,7 @@ export const accRcpt = algosdk.mnemonicToSecretKey(process.env.ACCOUNT_DST!);
 
 // ARC-0015 V0-DRAFT 
 // https://github.com/algorandfoundation/ARCs/pull/49/files
-export const ALGOSMS_V0_PREFIX = 'algosms/v0:ej';
+export const ALGOSMS_V0_PREFIX:string = 'algosms/v0:ej';
 
 export interface ALGOSMSV0 {
 	/** Short message contents **/
