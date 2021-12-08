@@ -23,13 +23,13 @@ export const ALGOSMSV0_TYPE_NOTE:string = 'algosms/v0:note';
 // https://goalseeker.purestake.io/algorand/testnet/transaction/O5TFQPZGOMVO3KEYW3UIGFE7GTG3WMTT5BP4Z53EBQ6IQUBDG4XQ
 
 export interface ALGOSMSV0_NOTE {
-	/** Object type eq to ALGOSMSV0_TYPE_MSG **/
+	/** Object type eq to ALGOSMSV0_TYPE_NOTE **/
 	_t: string ;
 
 	/** one-time public key of the NACL's sealed box **/
   otPK: Uint8Array;
 
-	/** cyperText of the ALGOSMSV0_MESSAGE structure **/
+	/** cipherText of the ALGOSMSV0_MESSAGE structure **/
   cT: Uint8Array;
 }
 

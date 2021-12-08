@@ -1,18 +1,9 @@
-import { TextEncoder, TextDecoder } from "util";
-
 import { ALGOSMSV0_MESSAGE, ALGOSMSV0_NOTE, ALGOSMSV0_TYPE_MSG, ALGOSMSV0_TYPE_NOTE } from "./common";
 
 import ed2curve from "ed2curve";
 import algosdk from "algosdk";
 
 import nacl from 'tweetnacl';
-
-const enc = new TextEncoder();
-const dec = new TextDecoder();
-
-export const toHex = (buffer: Uint8Array) => {
-  return Array.prototype.map.call(buffer, x => x.toString(16).padStart(2, '0')).join('');
-}
 
 /**
  * sealMessageIntoNote takes a message object, an Algorand addresses of message recipient and sender and returns PKI encrypted message.
@@ -90,7 +81,7 @@ export const unsealMessageFromNote = (note: Uint8Array, senderAlgoAddress: strin
     throw new Error("Unknown encrypted payload schema");
   }
 
-  //Convert recipient's private signing key into a cypher key
+  //Convert recipient's private signing key into a cipher key
   const rcptSecretKey = ed2curve.convertSecretKey(recipientAlgoAccount.sk);
 
   //Unseal the box 
@@ -98,7 +89,7 @@ export const unsealMessageFromNote = (note: Uint8Array, senderAlgoAddress: strin
 
   //Check if decryption is OK
   if (!decryptedBuffer || decryptedBuffer.length === 0 ) {
-    throw new Error("Cypertext is invalid or does not match recipient's secret key");
+    throw new Error("Ciphertext is invalid or does not match recipient's secret key");
   }
   
   //Decode MsgPacked structure into ALGOSMS format;
