@@ -1,5 +1,5 @@
 {
-  "name": "algosms-sdk",
+  "name": "algosms",
   "description": "ARC-0015 Algorand Standard for Encrypted Short Messages implementation",
   "version": "0.0.1",
   "license": "MIT",

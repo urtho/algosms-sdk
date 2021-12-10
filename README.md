@@ -1,6 +1,6 @@
-# algosms-sdk
+# algosms
 
-[![npm version](https://badge.fury.io/js/algosmssdk.svg)](https://www.npmjs.com/package/algosmssdk)
+[![npm version](https://badge.fury.io/js/algosms.svg)](https://www.npmjs.com/package/algosms)
 
 AlgoSMS SDK is the official JavaScript implementation of ARC-0015 - Algorand Standard for Encrypted Short Messages.
 
@@ -9,7 +9,7 @@ AlgoSMS SDK is the official JavaScript implementation of ARC-0015 - Algorand Sta
 ### [Node.js](https://nodejs.org/en/download/)
 
 ```
-$ npm install algosms-sdk
+$ npm install algosms
 ```
 
 > This package provides TypeScript types, but you will need [TypeScript](https://www.typescriptlang.org/) version 4.2 or higher to use them properly.
@@ -25,7 +25,7 @@ $ npm install algosms-sdk
     ALGOSMSV0_MESSAGE,
     ALGOSMSV0_TYPE_MSG,
     sendAlgoSMS,
-  } from 'algosms-sdk';
+  } from 'algosms';
 
   const addrRcpt = 'FCN6PO...6ACYXM';
   const accSender = algosdk.mnemonicToSecretKey('empty ... logic');
@@ -53,7 +53,7 @@ $ npm install algosms-sdk
 ### decrypting a message from a transaction 
 ```typescript
   import algosdk from 'algosdk';
-  import { unsealMessageFromNote } from 'algosms-sdk';
+  import { unsealMessageFromNote } from 'algosms';
 
   //instantiate the account of recipient 
   const accRcpt = algosdk.mnemonicToSecretKey('flash ... today');;
@@ -83,4 +83,4 @@ yarn build
 
 ## License
 
-algosms-sdk is licensed under an MIT license. 
+algosms is licensed under an MIT license. 

@@ -1,4 +1,4 @@
-import * as algosmssdk from './src/main';
+import * as algosms from './src/main';
 
 export * from './src/main';
-export default algosmssdk;
+export default algosms;
