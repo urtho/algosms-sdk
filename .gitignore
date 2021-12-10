@@ -1,3 +1,27 @@
-node_modules
-config.env
+.DS_Store
 
+.idea/
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+
+# npm
+node_modules/
+
+# Testing files
+*.feature
+temp
+
+# Environment information
+examples/.env
+
+tests/cucumber/features/
+tests/cucumber/browser/build
+tests/browser/bundle.*
+
+# Builds
+dist/
+docs/
+
+# Caches
+.eslintcache

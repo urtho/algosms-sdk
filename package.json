@@ -1,27 +1,67 @@
 {
   "name": "algosms-sdk",
-  "version": "0.0.0",
-  "main": "bin/index.js",
+  "description": "ARC-0015 Algorand Standard for Encrypted Short Messages implementation",
+  "version": "0.0.1",
   "license": "MIT",
   "author": {
     "name": "Paweł Pierścionek",
+    "url": "http://linked.in/in/urtho",
     "email": "invalid@data.pl"
   },
+  "homepage": "https://github.com/algorandfoundation/ARCs/tree/main/ARCs",
+  "funding": {
+    "algo": "6YD5XC6U567NAUJLBOD7ARGKKBCTRQXWQCS6EK5GFFACPA6II4MC3J2KUI"
+  },
   "scripts": {
-    "build": "tsc",
-    "send": "ts-node -r dotenv/config ./src/send.ts dotenv_config_path=config.env",
-    "decrypt": "ts-node -r dotenv/config ./src/decrypt.ts dotenv_config_path=config.env"
+    "test": "node -r ts-node/register tests/mocha.js",
+    "build": "concurrently \"tsc -p tsconfig-esm.json\" \"tsc -p tsconfig-cjs.json\"",
+    "docs": "typedoc src/index.ts",
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix .",
+    "format": "prettier --write .",
+    "example": "ts-node examples/offnet.ts",
+    "onnet": "ts-node examples/onnet.ts"
   },
   "dependencies": {
-    "@types/node": "^16.11.11",
-    "algosdk": "^1.12.0",
-    "dotenv": "^10.0.0",
-    "ed2curve": "^0.3.0",
-    "tweetnacl": "^1.0.3",
-    "typescript": "^4.5.2"
+    "algosdk": "~1.12.0",
+    "ed2curve": "~0.3.0",
+    "tweetnacl": "~1.0.3"
   },
   "devDependencies": {
-    "@types/ed2curve": "^0.2.2",
-    "ts-node": "^10.4.0"
-  }
+    "@types/ed2curve": "~0.2.2",
+    "@types/mocha": "~8.2.3",
+    "@types/node": "~14.18.0",
+    "@typescript-eslint/eslint-plugin": "~4.26.1",
+    "@typescript-eslint/parser": "~4.26.1",
+    "assert": "~2.0.0",
+    "concurrently": "~6.2.0",
+    "eslint": "~7.21.0",
+    "eslint-config-airbnb-base": "~14.2.1",
+    "eslint-config-prettier": "~8.1.0",
+    "eslint-plugin-import": "~2.22.1",
+    "eslint-plugin-tsdoc": "~0.2.11",
+    "lint-staged": "~10.5.4",
+    "mocha": "~9.0.0",
+    "mocha-lcov-reporter": "~1.3.0",
+    "prettier": "2.2.1",
+    "ts-loader": "~8.3.0",
+    "ts-node": "~10.0.0",
+    "typedoc": "~0.22.10",
+    "typedoc-plugin-missing-exports": "~0.22.6",
+    "typedoc-plugin-rename-defaults": "~0.4.0",
+    "typescript": "~4.2.3"
+  },
+  "directories": {
+    "test": "tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com:urtho/algosms-sdk.git"
+  },
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
+  "types": "dist/types/index.d.ts",
+  "files": [
+    "/dist"
+  ]
 }
