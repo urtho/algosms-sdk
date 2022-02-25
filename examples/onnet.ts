@@ -9,7 +9,7 @@ import {
 
 //A "no API key reqiured" testnet node, feel free to abuse it.
 const ALGONODE_TOKEN = 'no token required';
-const ALGONODE_SERVER = 'https://testnet-algo.api.chainsms.network/ps2';
+const ALGONODE_SERVER = 'https://testnet-api.algonode.cloud';
 const ALGONODE_PORT = '443';
 
 export const client = new algosdk.Algodv2(
